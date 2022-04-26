@@ -1,0 +1,14 @@
+/Users/janneke/developer/code/games/cSharpGame/game4/bin/Debug/netcoreapp3.1/game4
+/Users/janneke/developer/code/games/cSharpGame/game4/bin/Debug/netcoreapp3.1/game4.deps.json
+/Users/janneke/developer/code/games/cSharpGame/game4/bin/Debug/netcoreapp3.1/game4.runtimeconfig.json
+/Users/janneke/developer/code/games/cSharpGame/game4/bin/Debug/netcoreapp3.1/game4.runtimeconfig.dev.json
+/Users/janneke/developer/code/games/cSharpGame/game4/bin/Debug/netcoreapp3.1/game4.dll
+/Users/janneke/developer/code/games/cSharpGame/game4/bin/Debug/netcoreapp3.1/game4.pdb
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.csproj.AssemblyReference.cache
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.GeneratedMSBuildEditorConfig.editorconfig
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.AssemblyInfoInputs.cache
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.AssemblyInfo.cs
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.csproj.CoreCompileInputs.cache
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.dll
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.pdb
+/Users/janneke/developer/code/games/cSharpGame/game4/obj/Debug/netcoreapp3.1/game4.genruntimeconfig.cache
