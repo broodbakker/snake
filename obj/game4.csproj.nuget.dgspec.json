@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/janneke/developer/code/games/cSharpGame/game4/game4.csproj": {}
+    "/Users/janneke/developer/code/games/cSharpGame/snake1/game4.csproj": {}
   },
   "projects": {
-    "/Users/janneke/developer/code/games/cSharpGame/game4/game4.csproj": {
+    "/Users/janneke/developer/code/games/cSharpGame/snake1/game4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/janneke/developer/code/games/cSharpGame/game4/game4.csproj",
+        "projectUniqueName": "/Users/janneke/developer/code/games/cSharpGame/snake1/game4.csproj",
         "projectName": "game4",
-        "projectPath": "/Users/janneke/developer/code/games/cSharpGame/game4/game4.csproj",
+        "projectPath": "/Users/janneke/developer/code/games/cSharpGame/snake1/game4.csproj",
         "packagesPath": "/Users/janneke/.nuget/packages/",
-        "outputPath": "/Users/janneke/developer/code/games/cSharpGame/game4/obj/",
+        "outputPath": "/Users/janneke/developer/code/games/cSharpGame/snake1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/janneke/.nuget/NuGet/NuGet.Config"
