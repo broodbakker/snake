@@ -1,3 +1,7 @@
 is_global = true
 build_property.RootNamespace = game4
+<<<<<<< HEAD
 build_property.ProjectDir = /Users/janneke/developer/code/games/cSharpGame/snake/
+=======
+build_property.ProjectDir = /Users/janneke/developer/code/games/cSharpGame/snake1/
+>>>>>>> 398fb72be789d16b96ce792383ab1dbb33d39ccc

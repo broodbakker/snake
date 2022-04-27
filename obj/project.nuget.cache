@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "NVHYQnQUykH++QtcoaDrx4AFpbehsfVA/9SrFc+fmCkWqQMlQuAXWMZUvNxJfi5pbjK5dTwu4AvkSQwiwKfUog==",
   "success": true,
   "projectFilePath": "/Users/janneke/developer/code/games/cSharpGame/snake/snake.csproj",
+=======
+  "dgSpecHash": "bXMwETB+UyLlyyvILP2ZpRDosbLsaaTSkMIud8HJIEYUkEH5sEmeP3cPV0vv3mEZtnR3aOJiPMXYUY6/CqVUcg==",
+  "success": true,
+  "projectFilePath": "/Users/janneke/developer/code/games/cSharpGame/snake1/game4.csproj",
+>>>>>>> 398fb72be789d16b96ce792383ab1dbb33d39ccc
   "expectedPackageFiles": [],
   "logs": []
 }
