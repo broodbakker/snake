@@ -14,8 +14,8 @@ dotnet run
 You need to have .netcoreapp3.1 installed
 
 ##  Author
- [Martijn van de Ree](https://link-url-here.org)
+ [Martijn van de Ree](https://google.nl)
 
 ## License
-This project is open source and available under the [MIT License](https://github.com/broodbakker/snake/blob/master/.LICENSE)
+This project is open source and available under the [MIT License](https://github.com/broodbakker/snake/blob/master/LICENSE)
 
