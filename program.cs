@@ -4,7 +4,7 @@ using static System.Console;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace game4
+namespace snake
 {
   public struct SnakeSegment
   {
@@ -16,43 +16,110 @@ namespace game4
       Y = y;
     }
   }
-
   class Program
   {
     static void Main(string[] args)
     {
-      List<SnakeSegment> snake = new List<SnakeSegment>();
-
-      snake.Add(new SnakeSegment(4, 5));
-      snake.Add(new SnakeSegment(4, 6));
-
-      int score = 0;
-
-      int foodX = 30;
-      int foodY = 10;
-
-      int snakeDirection = 1;
-      bool dead = false;
-
-      int snakeX = 3;
-      int snakeY = 2;
-
-      int gameScreenHeight = 10;
-      int gameScreenWidth = 10;
-
-      int gameScreenStartX = 1;
-      int gameScreenStartY = 1;
-
-      int screenHeight = 20;
-      int screenWidth = 100;
-      //random
-      Random rand = new Random();
-
-      Console.CursorVisible = false;
       while (true)
       {
+        //static
+        //create snake
+        List<SnakeSegment> snake = new List<SnakeSegment>();
+        snake.Add(new SnakeSegment(4, 5));
+        snake.Add(new SnakeSegment(4, 6));
+        snake.Add(new SnakeSegment(4, 7));
+
+        int score = 0;
+        bool dead = false;
+
+        int foodX = 5;
+        int foodY = 5;
+
+        int snakeDirection = 1;
+        CursorVisible = false;
+
+        int startScreenHeight = 3;
+        int startScreenWidth = 3;
+
+        int screenHeight = 20;
+        int screenWidth = 60;
+
+        int endScreenHeight = screenHeight + startScreenHeight;
+        int endScreenWidth = screenWidth + startScreenWidth;
+        Clear();
+        //draw upper border
+        SetCursorPosition(startScreenWidth - 1, startScreenHeight - 1);
+        BackgroundColor = ConsoleColor.Red;
+        WriteLine($"{String.Concat(Enumerable.Repeat(" ", screenWidth + 2))}");
+        //draw lower border
+        SetCursorPosition(startScreenWidth - 1, endScreenHeight);
+        BackgroundColor = ConsoleColor.Red;
+        WriteLine($"{String.Concat(Enumerable.Repeat(" ", screenWidth + 2))}");
+
+        for (int line = startScreenHeight; line < endScreenHeight; line++)
+        {
+          //draw left border
+          SetCursorPosition(startScreenWidth - 1, line);
+          BackgroundColor = ConsoleColor.Red;
+          WriteLine(" ");
+          //drawright border
+          SetCursorPosition(endScreenWidth, line);
+          BackgroundColor = ConsoleColor.Red;
+          WriteLine(" ");
+        }
+        //draw snake body
+        foreach (SnakeSegment snakePart in snake)
+        {
+          SetCursorPosition(snakePart.X, snakePart.Y);
+
+          if (dead)
+          {
+            WriteLine("x");
+          }
+          else
+          {
+            Console.BackgroundColor = ConsoleColor.Blue;
+            WriteLine(" ");
+          }
+        }
+        //draw snake head
+        SetCursorPosition(snake.LastOrDefault().X, snake.LastOrDefault().Y);
+        if (dead)
+        {
+          WriteLine("x");
+        }
+        else
+        {
+          Console.BackgroundColor = ConsoleColor.Green;
+          WriteLine(" ");
+        }
+        //draw food
+        Console.BackgroundColor = ConsoleColor.DarkYellow;
+        SetCursorPosition(foodX, foodY);
+        WriteLine(" ");
+
+        Console.BackgroundColor = ConsoleColor.Black;
+
+        //draw score board
+        SetCursorPosition(endScreenWidth + 2, startScreenHeight);
+        WriteLine($"score {score}");
+        //draw rules/tutorial
+        SetCursorPosition(endScreenWidth + 2, startScreenHeight + 1);
+        WriteLine($"use the keys to navigate:");
+        SetCursorPosition(endScreenWidth + 2, startScreenHeight + 2);
+        WriteLine($"   ^   ");
+        SetCursorPosition(endScreenWidth + 2, startScreenHeight + 3);
+        WriteLine($"<     >");
+        SetCursorPosition(endScreenWidth + 2, startScreenHeight + 4);
+        WriteLine($"   ↓   ");
+
+        //wait for key press
+        ReadKey();
+
         while (!dead)
         {
+          Console.BackgroundColor = ConsoleColor.Black;
+          //timer
           //fix cursor height/width ratio
           if (snakeDirection % 2 == 1)
           {
@@ -64,9 +131,6 @@ namespace game4
             //timing & input
             System.Threading.Thread.Sleep(100);
           }
-
-          //clear screen
-          Clear();
           //change direction
           if (Console.KeyAvailable)
           {
@@ -88,7 +152,6 @@ namespace game4
               snakeDirection = 3;
             }
           }
-
           //collision detection
           //collision with food
           if (snake.LastOrDefault().X == foodX && snake.LastOrDefault().Y == foodY)
@@ -98,10 +161,12 @@ namespace game4
             //spawn new food
             int x;
             int y;
+            //random
+            Random rand = new Random();
             do
             {
-              x = rand.Next(0, screenWidth);
-              y = rand.Next(0, screenHeight);
+              x = rand.Next(startScreenWidth, endScreenWidth);
+              y = rand.Next(startScreenHeight, endScreenHeight);
             } while (snake.Contains(new SnakeSegment(x, y)));
             foodX = x;
             foodY = y;
@@ -111,7 +176,6 @@ namespace game4
             //remove tale
             snake.RemoveAt(0);
           }
-
           SnakeSegment lastItem = snake.LastOrDefault();
           SnakeSegment newPart;
           switch (snakeDirection)
@@ -132,7 +196,6 @@ namespace game4
               newPart = new SnakeSegment(lastItem.X - 1, lastItem.Y);
               break;
           }
-
           //collision with self
           if (snake.Contains(newPart))
           {
@@ -143,61 +206,97 @@ namespace game4
           {
             snake.Add(newPart);
           }
-
           //collision with walls
-          if (snake.LastOrDefault().X < 0 || snake.LastOrDefault().X >= screenWidth)
+          if (snake.LastOrDefault().X < startScreenWidth || snake.LastOrDefault().X >= endScreenWidth)
           {
             dead = true;
             break;
           }
-          if (snake.LastOrDefault().Y < 0 || snake.LastOrDefault().Y >= screenHeight)
+          if (snake.LastOrDefault().Y < startScreenHeight || snake.LastOrDefault().Y >= endScreenHeight)
           {
             dead = true;
             break;
           }
+          //clear screen
+          Clear();
+          //upper border
+          SetCursorPosition(startScreenWidth - 1, startScreenHeight - 1);
+          BackgroundColor = ConsoleColor.Red;
+          WriteLine($"{String.Concat(Enumerable.Repeat(" ", screenWidth + 2))}");
+          //lower border
+          SetCursorPosition(startScreenWidth - 1, endScreenHeight);
+          BackgroundColor = ConsoleColor.Red;
+          WriteLine($"{String.Concat(Enumerable.Repeat(" ", screenWidth + 2))}");
 
+          for (int line = startScreenHeight; line < endScreenHeight; line++)
+          {
+            //left border
+            SetCursorPosition(startScreenWidth - 1, line);
+            BackgroundColor = ConsoleColor.Red;
+            WriteLine(" ");
+            //right border
+            SetCursorPosition(endScreenWidth, line);
+            BackgroundColor = ConsoleColor.Red;
+            WriteLine(" ");
+          }
           //draw snake body
           foreach (SnakeSegment snakePart in snake)
           {
             SetCursorPosition(snakePart.X, snakePart.Y);
-
-            if (dead)
-            {
-              WriteLine("x");
-            }
-            else
-            {
-              WriteLine("0");
-            }
-
+            Console.BackgroundColor = ConsoleColor.Blue;
+            WriteLine(" ");
           }
           //draw snake head
           SetCursorPosition(snake.LastOrDefault().X, snake.LastOrDefault().Y);
-          if (dead)
-          {
-            WriteLine("x");
-          }
-          else
-          {
-            WriteLine("1");
-          }
-
+          Console.BackgroundColor = ConsoleColor.Green;
+          WriteLine(" ");
           //draw food
           SetCursorPosition(foodX, foodY);
-          WriteLine("F");
+          Console.BackgroundColor = ConsoleColor.DarkYellow;
+          WriteLine(" ");
+          //draw score board
+          SetCursorPosition(endScreenWidth + 2, startScreenHeight);
+          WriteLine($"score {score}");
 
+          Console.BackgroundColor = ConsoleColor.Black;
 
+          //draw rules/tutorial
+          SetCursorPosition(endScreenWidth + 2, startScreenHeight + 1);
+          WriteLine($"use the arrow keys to navigate");
+          SetCursorPosition(endScreenWidth + 2, startScreenHeight + 2);
+          WriteLine($"   ↑   ");
+          SetCursorPosition(endScreenWidth + 2, startScreenHeight + 3);
+          WriteLine($"←     →");
+          SetCursorPosition(endScreenWidth + 2, startScreenHeight + 4);
+          WriteLine($"   ↓   ");
         }
-
         if (dead)
         {
-          WriteLine("you are dead press space to go again");
-        }
-        while (Console.ReadKey().Key != ConsoleKey.Spacebar)
-        {
-          dead = false;
+          //draw snake body
+          foreach (SnakeSegment snakePart in snake)
+          {
+            SetCursorPosition(snakePart.X, snakePart.Y);
+            Console.BackgroundColor = ConsoleColor.Blue;
+            WriteLine("x");
+          }
+          //draw snake head
+          SetCursorPosition(snake.LastOrDefault().X, snake.LastOrDefault().Y);
+          Console.BackgroundColor = ConsoleColor.Green;
+          WriteLine("x");
+
+          Console.BackgroundColor = ConsoleColor.Black;
+
+          //score output
+          SetCursorPosition(0, endScreenHeight + 2);
+          WriteLine($"your score is: {score}");
+          WriteLine("you lost :( press space to go again");
         }
 
+        //wait for spacebar to restart game
+        while (Console.ReadKey().Key != ConsoleKey.Spacebar)
+        {
+        }
+        dead = false;
       }
     }
   }
